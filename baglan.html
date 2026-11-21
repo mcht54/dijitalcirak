@@ -1,0 +1,24 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TikTok bağlantısı · Dijital Çırak</title><link rel="stylesheet" href="stil.css">
+<style>.kutu{background:#f6f3f7;border-radius:14px;padding:18px;margin:18px 0}.btn{display:inline-block;background:#111;color:#fff;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:700}
+code{word-break:break-all;background:#fff;padding:8px;border-radius:8px;display:block;margin-top:8px}</style></head><body><main>
+<header><img src="logo.jpg" alt=""><div><h1>TikTok bağlantısı</h1><span class="g">Dijital Cirak Yayin</span></div></header>
+<div id="durum" class="kutu"></div>
+<footer><a href="index.html">Dijital Çırak</a> · <a href="gizlilik.html">Gizlilik</a> · <a href="kosullar.html">Koşullar</a></footer>
+</main>
+<script>
+var KEY="sbaw6vg2j9bto0qefk", YON="https://mcht54.github.io/dijitalcirak/baglan.html";
+var q=new URLSearchParams(location.search), d=document.getElementById("durum");
+if(q.get("code")){
+  d.innerHTML="<h2>✅ TikTok hesabı bağlandı</h2><p>Dijital Çırak artık hazırladığı bölümleri <b>@dijitalciragim</b> hesabına zamanında yükleyebilir. "+
+  "Yayın aracı bu tek kullanımlık kodu kısa süre içinde erişim anahtarına çevirir; kod ve anahtar hiçbir yerde paylaşılmaz.</p>"+
+  "<p class='g'>İzinler: "+(q.get("scopes")||"").replace(/,/g,", ")+"</p><small>Tek kullanımlık kod:</small><code id='kod'></code>";
+  document.getElementById("kod").textContent=q.get("code");
+} else if(q.get("error")){
+  d.innerHTML="<h2>Bağlantı yapılmadı</h2><p>"+q.get("error_description")+"</p>";
+} else {
+  var st=Math.random().toString(36).slice(2);
+  var u="https://www.tiktok.com/v2/auth/authorize/?client_key="+KEY+"&scope=user.info.basic,video.upload,video.publish&response_type=code&redirect_uri="+encodeURIComponent(YON)+"&state="+st;
+  d.innerHTML="<p>Dijital Çırak'ın kendi bölümlerini kendi TikTok hesabına (<b>@dijitalciragim</b>) yükleyebilmesi için bir kez izin verin.</p><a class='btn' href='"+u+"'>TikTok ile bağlan</a>";
+}
+</script></body></html>
